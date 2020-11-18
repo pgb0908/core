@@ -4,7 +4,10 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
-// OrderServiceImp이 DiscountPolicy라는 역할과 구현을 직접적으로 관여함
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class OrderServiceImp implements OrderService{
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -14,6 +17,7 @@ public class OrderServiceImp implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy; // dependency를 해제할 수 있다! 그런데 구현부는??
 
+    @Autowired
     public OrderServiceImp(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
